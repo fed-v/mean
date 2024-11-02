@@ -1,89 +1,34 @@
-'use strict';
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
 
-// Karma configuration
-module.exports = function(config) {
-  var basePath = '.';
-
+module.exports = function (config) {
   config.set({
-
-    // base path, that will be used to resolve files and exclude
-    basePath: basePath,
-
-    // frameworks to use
-    frameworks: ['jasmine', 'phantomjs-shim'],
-
-    // list of files to exclude
-    exclude: [],
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage', 'junit'],
-
-    junitReporter: {
-      outputDir: 'tests/results/public/junit/'
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma'),
+    ],
+    client: {
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
-
-    // coverage
-    preprocessors: {
-      // source files that you want to generate coverage for
-      // do not include tests or libraries
-      // (these files will be instrumented by Istanbul)
-      'packages/**/public/controllers/**/*.js': ['coverage'],
-      'packages/**/public/services/**/*.js': ['coverage'],
-      'packages/**/public/directives/**/*.js': ['coverage'],
-
-      'packages/**/public/**/*.html': ['ng-html2js']
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, 'coverage'),
+      reports: ['html', 'lcovonly'],
+      fixWebpackSourcePaths: true,
     },
-
-    coverageReporter: {
-      type: 'html',
-      dir: 'tests/results/coverage/'
+    angularCli: {
+      environment: 'dev',
     },
-
-    ngHtml2JsPreprocessor: {
-      cacheIdFromPath: function(path){
-        var cacheId = path;
-
-        //Strip packages/custom/ and public/ to match the pattern of URL that mean.io uses
-        cacheId = cacheId.replace('packages/custom/', '');
-        cacheId = cacheId.replace('public/', '');
-
-        return cacheId;
-      }
-    },
-
-    // web server port
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
-    // Look for server on port 3001 (invoked by mocha) - via @brownman
-    proxies: {
-      '/': 'http://localhost:3001/'
-    },
-
-    // enable / disable colors in the output (reporters and logs)
     colors: true,
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
-
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
-    browsers: ['PhantomJS'],
-
-    // If browser does not capture in given timeout [ms], kill it
-    captureTimeout: 60000,
-
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: true
+    autoWatch: true,
+    browsers: ['Chrome'],
+    singleRun: false,
   });
 };

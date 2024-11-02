@@ -1,74 +1,48 @@
-# --------------------
-# OSX Files
-# --------------------
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.Spotlight-V100
-.Trashes
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# --------------------
-# Eclipse or Nodeclipse "Enide Studio" Files
-# --------------------
-# recommended to add to Git SCM
-# or generate with `nodeclipse -p` command
+# compiled output
+/dist
+/dist-server
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
 .project
+.classpath
+.c9/
+*.launch
 .settings/
-.*.md.html
+*.sublime-workspace
 
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# --------------------
-# IntelliJ Files
-# --------------------
-*.iml
-*.ipr
-*.iws
-.idea/
-
-# --------------------
-# Netbeans Files
-# --------------------
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
-# --------------------
-# Node Files
-# --------------------
-.nodemonignore
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
-node_modules/
+yarn-error.log
+testem.log
+/typings
 
-# --------------------
-# SASS Files
-# --------------------
-.sass-cache/
+# e2e
+/e2e/*.js
+/e2e/*.map
 
-# --------------------
-# Bower Files
-# --------------------
-.bower-*/
-bower_components
+# System Files
+.DS_Store
+Thumbs.db
 
-# --------------------
-# App Files
-# --------------------
-data/
-tests/results/**
-modules/public/
-modules/views/
-/public/build/
-/packages/contrib/
-/packages/**/**/public/assets/lib
-
-
-# --------------------
-# vim Files
-# --------------------
-*.swp
+# Env file
+*.env
